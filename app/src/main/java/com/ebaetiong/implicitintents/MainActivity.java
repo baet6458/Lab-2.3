@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     //Variables
     private EditText mWebsiteEditText;
 
+    private EditText mLocationEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,18 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             Log.d("ImplicitIntents","Can't handle this!");
+        }
+    }
+
+    public void openLocation(View view) {
+        mLocationEditText=findViewById(R.id.location_edittext);
+        String loc = mLocationEditText.getText().toString();
+        Uri addressUri = Uri.parse("geo:0,0?q=" + loc);
+        Intent intent = new Intent(Intent.ACTION_VIEW, addressUri);
+        if(intent.resolveActivity(getPackageManager()) != null){
+            startActivity(intent);
+        }else{
+            Log.d("ImplicitIntents","Can't handle this intent!");
         }
     }
 }
