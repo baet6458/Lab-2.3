@@ -2,6 +2,7 @@ package com.ebaetiong.implicitintents;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText mWebsiteEditText;
 
     private EditText mLocationEditText;
+
+    private EditText mShareTextEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,5 +47,17 @@ public class MainActivity extends AppCompatActivity {
         }else{
             Log.d("ImplicitIntents","Can't handle this intent!");
         }
+    }
+
+    public void shareText(View view) {
+        mShareTextEditText=findViewById(R.id.share_edittext);
+        String txt=mShareTextEditText.getText().toString();
+        String mimeType="text/plain";
+        ShareCompat.IntentBuilder
+                .from(this)
+                .setType(mimeType)
+                .setChooserTitle("Share This text with:")
+                .setText(txt)
+                .startChooser();
     }
 }
