@@ -22,10 +22,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mWebsiteEditText=findViewById(R.id.website_edittext);
+        mLocationEditText=findViewById(R.id.location_edittext);
+        mShareTextEditText=findViewById(R.id.share_edittext);
     }
 
     public void openWebsite(View view) {
-        mWebsiteEditText=findViewById(R.id.website_edittext);
+
         String url=mWebsiteEditText.getText().toString();
         Uri webpage = Uri.parse(url);
         Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
@@ -38,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openLocation(View view) {
-        mLocationEditText=findViewById(R.id.location_edittext);
+
         String loc = mLocationEditText.getText().toString();
         Uri addressUri = Uri.parse("geo:0,0?q=" + loc);
         Intent intent = new Intent(Intent.ACTION_VIEW, addressUri);
@@ -50,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void shareText(View view) {
-        mShareTextEditText=findViewById(R.id.share_edittext);
+
         String txt=mShareTextEditText.getText().toString();
         String mimeType="text/plain";
         ShareCompat.IntentBuilder
